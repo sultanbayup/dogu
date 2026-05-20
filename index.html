@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" class="dark" style="background:#09090B;color:#FAFAFA">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tiny tools that just work." />
+    <meta name="theme-color" content="#09090B" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" as="style" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script defer data-domain="dogu.app" src="https://plausible.io/js/script.js"></script>
+    <!-- GitHub Pages SPA fallback: replay path stored by 404.html -->
+    <script>
+      (function () {
+        var redirect = sessionStorage.redirect;
+        if (redirect && redirect !== '/') {
+          delete sessionStorage.redirect;
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
+    <title>Dogu - Tiny tools that just work.</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
