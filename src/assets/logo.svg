@@ -1,0 +1,22 @@
+<!-- Dogu logo: four squares in a 2×2 grid.
+     Uniform spacing (4px gap), identical corner radii (3px),
+     single foreground color (#FAFAFA), transparent background.
+     Requirements: 15.1, 15.2 -->
+<svg
+  width="32"
+  height="32"
+  viewBox="0 0 32 32"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label="Dogu logo"
+  role="img"
+>
+  <!-- Top-left square -->
+  <rect x="0"  y="0"  width="14" height="14" rx="3" ry="3" fill="#FAFAFA" />
+  <!-- Top-right square -->
+  <rect x="18" y="0"  width="14" height="14" rx="3" ry="3" fill="#FAFAFA" />
+  <!-- Bottom-left square -->
+  <rect x="0"  y="18" width="14" height="14" rx="3" ry="3" fill="#FAFAFA" />
+  <!-- Bottom-right square -->
+  <rect x="18" y="18" width="14" height="14" rx="3" ry="3" fill="#FAFAFA" />
+</svg>

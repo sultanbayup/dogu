@@ -1,0 +1,15 @@
+:root {
+  --color-bg: #09090B;
+  --color-surface: #18181B;
+  --color-accent: #2563EB;
+  --color-text: #FAFAFA;
+  --color-text-secondary: #A1A1AA;
+
+  --radius-card: 1rem;
+  --radius-button: 0.75rem;
+
+  --motion-duration-fast: 200ms;
+  --motion-easing: cubic-bezier(0, 0, 0.2, 1);
+
+  --font-sans: 'Geist', 'Inter', system-ui, sans-serif;
+}

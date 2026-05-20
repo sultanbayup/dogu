@@ -1,0 +1,70 @@
+@import './tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  a {
+    @apply text-accent transition-colors duration-fast;
+    &:hover {
+      @apply opacity-80;
+    }
+    &:focus-visible {
+      @apply outline-2 outline-offset-2 outline-accent;
+    }
+  }
+
+  button {
+    @apply transition-all duration-fast;
+    &:focus-visible {
+      @apply outline-2 outline-offset-2 outline-accent;
+    }
+  }
+
+  input, textarea, select {
+    @apply transition-colors duration-fast;
+    &:focus-visible {
+      @apply outline-2 outline-offset-2 outline-accent;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+  }
+}
