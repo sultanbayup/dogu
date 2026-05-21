@@ -28,6 +28,7 @@ function plausibleProductionOnly(): Plugin {
 }
 
 export default defineConfig({
+  base: '/dogu/',
   plugins: [
     react(),
     plausibleProductionOnly(),
@@ -48,8 +49,8 @@ export default defineConfig({
         name: 'Dogu',
         short_name: 'Dogu',
         description: 'Tiny tools that just work.',
-        start_url: '/',
-        scope: '/',
+        start_url: '/dogu/',
+        scope: '/dogu/',
         display: 'standalone',
         theme_color: '#09090B',
         background_color: '#09090B',

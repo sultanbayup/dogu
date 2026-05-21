@@ -4,9 +4,15 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script>
-      const path = location.pathname + location.search
-      sessionStorage.redirect = path
-      location.href = '/'
+      // GitHub Pages SPA fallback for sub-path deployments.
+      // Strip the base (/dogu) from the path and store the remainder,
+      // then redirect to the base so index.html loads.
+      var base = '/dogu'
+      var path = location.pathname
+      // Store everything after the base so the app can replay it
+      var rest = path.startsWith(base) ? path.slice(base.length) || '/' : path
+      sessionStorage.redirect = rest + location.search
+      location.href = base + '/'
     </script>
   </head>
   <body></body>

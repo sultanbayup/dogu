@@ -14,9 +14,9 @@
     <script>
       (function () {
         var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
         if (redirect && redirect !== '/') {
-          delete sessionStorage.redirect;
-          history.replaceState(null, '', redirect);
+          history.replaceState(null, '', '/dogu' + redirect);
         }
       })();
     </script>
