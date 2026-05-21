@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
-import { SLUG_PATTERN, validateRegistry, findTool, ToolMetadata } from './registry';
+import { SLUG_PATTERN, validateRegistry, findTool, tools, ToolMetadata } from './registry';
 import { Heart } from 'lucide-react';
 
 // Helper to create a valid tool metadata entry
@@ -160,6 +160,67 @@ describe('findTool', () => {
   it('should return undefined for unknown slug', () => {
     expect(findTool('unknown-slug')).toBeUndefined();
   });
+});
+
+describe('Property 11: findTool lookup correctness', () => {
+  /**
+   * **Validates: Requirements 1.9**
+   *
+   * For any slug string, findTool(slug) returns the ToolMetadata entry whose
+   * slug field equals the input if such an entry exists, and returns undefined
+   * otherwise. For every registered entry e, findTool(e.slug) === e.
+   */
+
+  it(
+    'findTool returns the matching entry for every registered slug',
+    () => {
+      // For every registered entry e, findTool(e.slug) === e
+      for (const entry of tools) {
+        expect(findTool(entry.slug)).toBe(entry);
+      }
+    }
+  );
+
+  it(
+    'findTool returns undefined for slugs not in the registry',
+    () => {
+      fc.assert(
+        fc.property(
+          fc.string(),
+          (slug) => {
+            const registeredSlugs = new Set(tools.map((t: ToolMetadata) => t.slug));
+            const result = findTool(slug);
+            if (registeredSlugs.has(slug)) {
+              // If the slug is registered, result must be the matching entry
+              expect(result).toBeDefined();
+              expect(result!.slug).toBe(slug);
+            } else {
+              // If the slug is not registered, result must be undefined
+              expect(result).toBeUndefined();
+            }
+          }
+        ),
+        { numRuns: 100 }
+      );
+    }
+  );
+
+  it(
+    'findTool is consistent: same slug always returns same entry',
+    () => {
+      fc.assert(
+        fc.property(
+          arbitraryValidSlug(),
+          (slug) => {
+            const result1 = findTool(slug);
+            const result2 = findTool(slug);
+            expect(result1).toBe(result2);
+          }
+        ),
+        { numRuns: 100 }
+      );
+    }
+  );
 });
 
 // Property-based test generators
