@@ -50,6 +50,9 @@ Thumbs.db
 .vscode/
 .idea/
 
+# ── Kiro (local AI dev tool — contains personal data, never commit) ───────────
+.kiro/
+
 # ── Package manager caches ────────────────────────────────────────────────────
 .npm
 .pnpm-store

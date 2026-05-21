@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { findTool } from '../tools/registry'
-import { ToolLayout } from '../layouts/ToolLayout'
 import { DelayedSpinner } from '../components/DelayedSpinner'
 import { ChunkLoadError } from '../components/ChunkLoadError'
 import { ToolErrorBoundary } from '../components/ToolErrorBoundary'
@@ -10,11 +9,13 @@ import { withTimeout } from '../utils/withTimeout'
 
 /**
  * ToolPage reads the `:slug` URL param, looks it up in the registry, and
- * renders the matching tool inside Tool_Layout with lazy loading.
+ * renders the matching tool with lazy loading.
+ *
+ * Each tool component is responsible for rendering its own ToolLayout.
  *
  * - Unknown slug → NotFoundPage
- * - Known slug   → React.lazy(withTimeout(tool.component, 10_000)) inside
- *                  Tool_Layout, wrapped in Suspense + ToolErrorBoundary
+ * - Known slug   → React.lazy(withTimeout(tool.component, 10_000)) wrapped
+ *                  in Suspense + ToolErrorBoundary
  *
  * Requirements: 2.2, 2.3, 14.4, 14.5, 14.6
  */
@@ -37,12 +38,7 @@ interface ToolPageInnerProps {
   tool: NonNullable<ReturnType<typeof findTool>>
 }
 
-/**
- * Inner component that holds the lazy reference in state so that the Retry
- * button can reset it (by bumping a key) to trigger a fresh import attempt.
- */
 function ToolPageInner({ tool }: ToolPageInnerProps) {
-  // retryKey is incremented on retry to force React.lazy to re-evaluate
   const [retryKey, setRetryKey] = useState(0)
 
   const LazyTool = useMemo(
@@ -52,24 +48,21 @@ function ToolPageInner({ tool }: ToolPageInnerProps) {
   )
 
   return (
-    <ToolLayout title={tool.name}>
-      <ToolErrorBoundary
-        key={retryKey}
-        fallback={(onRetry) => (
-          <ChunkLoadError
-            onRetry={() => {
-              onRetry()
-              setRetryKey((k) => k + 1)
-            }}
-          />
-        )}
-      >
-        {/* Suspense fallback: DelayedSpinner shows only after 200 ms */}
-        <React.Suspense fallback={<DelayedSpinner delay={200} />}>
-          <LazyTool />
-        </React.Suspense>
-      </ToolErrorBoundary>
-    </ToolLayout>
+    <ToolErrorBoundary
+      key={retryKey}
+      fallback={(onRetry) => (
+        <ChunkLoadError
+          onRetry={() => {
+            onRetry()
+            setRetryKey((k) => k + 1)
+          }}
+        />
+      )}
+    >
+      <React.Suspense fallback={<DelayedSpinner delay={200} />}>
+        <LazyTool />
+      </React.Suspense>
+    </ToolErrorBoundary>
   )
 }
 

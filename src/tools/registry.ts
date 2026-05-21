@@ -1,5 +1,6 @@
 import { ComponentType } from 'react';
 import { LucideIcon } from 'lucide-react';
+import { Users, Disc3, Receipt, QrCode } from 'lucide-react';
 
 /**
  * Slug pattern: 1–64 characters, lowercase a–z, digits 0–9, and hyphens only.
@@ -135,7 +136,44 @@ export function findTool(slug: string): ToolMetadata | undefined {
  * sorted lexicographically by slug.
  * Validation runs at module load.
  */
-export const tools: ReadonlyArray<ToolMetadata> = [];
+export const tools: ReadonlyArray<ToolMetadata> = [
+  {
+    slug: 'qr-generator',
+    name: 'QR Generator',
+    description: 'Generate QR codes for URLs or WiFi credentials, client-side.',
+    category: 'generator',
+    icon: QrCode,
+    popular: false,
+    component: () => import('./qr-generator/index'),
+  },
+  {
+    slug: 'spin-wheel',
+    name: 'Spin Wheel',
+    description: 'Spin a customisable wheel to pick a random item.',
+    category: 'random',
+    icon: Disc3,
+    popular: true,
+    component: () => import('./spin-wheel/index'),
+  },
+  {
+    slug: 'split-bill',
+    name: 'Split Bill',
+    description: 'Calculate per-person amounts from a shared bill with tax and service charge.',
+    category: 'calculator',
+    icon: Receipt,
+    popular: true,
+    component: () => import('./split-bill/index'),
+  },
+  {
+    slug: 'team-splitter',
+    name: 'Team Splitter',
+    description: 'Randomly divide a list of names into balanced teams.',
+    category: 'random',
+    icon: Users,
+    popular: true,
+    component: () => import('./team-splitter/index'),
+  },
+];
 
 // Validate the registry at module load
 validateRegistry(tools as ToolMetadata[]);

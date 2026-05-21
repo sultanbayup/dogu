@@ -27,9 +27,9 @@ export function ToolCard({ tool }: ToolCardProps) {
         // Layout — min 44×44 tap target, internal padding
         'flex flex-col gap-3 p-4 min-h-[44px] min-w-[44px]',
         // Surface and shape
-        'bg-surface rounded-2xl',
-        // Border for subtle definition on dark background
-        'border border-white/5',
+        'glass-panel rounded-2xl',
+        // Border for subtle definition on dark background — handled by glass-panel
+        'border-0',
         // Text color inheritance
         'text-text no-underline',
         // Focus ring for keyboard navigation
