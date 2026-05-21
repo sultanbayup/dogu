@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './components/ThemeProvider'
 import { MotionProvider } from './components/MotionProvider'
 import { AnalyticsProvider } from './components/AnalyticsProvider'
+import { BlobBackground } from './components/BlobBackground'
 import HomePage from './pages/HomePage'
 import ToolPage from './pages/ToolPage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -27,7 +28,7 @@ function App() {
      * /tools/:slug back to /). This satisfies Requirement 9.4 without any
      * additional configuration.
      */
-    <BrowserRouter>
+    <BrowserRouter basename="/dogu">
       <ThemeProvider>
         <MotionProvider>
           <AnalyticsProvider>
@@ -36,6 +37,7 @@ function App() {
              * overflow-x-hidden: prevent horizontal scroll on 320–1920px viewports (Req 13.2).
              */}
             <div className="min-w-[320px] overflow-x-hidden">
+              <BlobBackground />
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/tools/:slug" element={<ToolPage />} />
