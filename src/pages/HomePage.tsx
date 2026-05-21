@@ -37,7 +37,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-bg text-text font-sans">
       {/* Hero region — wordmark, tagline, search bar (Req 3.1, 3.5, 15.4) */}
-      <header className="w-full px-4 pt-10 pb-6 flex flex-col items-center gap-3 max-w-2xl mx-auto">
+      <header className="w-full px-4 pt-10 pb-6 flex flex-col items-center gap-3 max-w-2xl mx-auto animate-slide-up">
         <h1 className="text-4xl font-bold tracking-tight text-text leading-none">
           Dogu
         </h1>

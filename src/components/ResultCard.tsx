@@ -27,9 +27,8 @@ export function ResultCard({ children, copyPayload }: ResultCardProps) {
     <div
       className={[
         'relative',
-        'bg-surface',
+        'glass-panel',
         'rounded-card',
-        'border border-white/5',
         'p-4',
       ].join(' ')}
     >
