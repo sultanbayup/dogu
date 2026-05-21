@@ -1,4 +1,6 @@
 :root {
+  color-scheme: dark;
+
   --color-bg: #09090B;
   --color-surface: #18181B;
   --color-accent: #2563EB;
