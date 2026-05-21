@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Splitter Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-blue"></div>
+        <div class="blob blob-red"></div>
+    </div>
+    
+    <main class="container">
+        <header>
+            <h1>Team Splitter <span class="gradient-text">Pro</span></h1>
+            <p>Enter 10 names to randomly split them into Team Blue and Team Red.</p>
+        </header>
+
+        <div class="input-section glass-panel">
+            <label for="names-input">Enter Names (one per line):</label>
+            <textarea id="names-input" rows="10" placeholder="Player 1&#10;Player 2&#10;Player 3&#10;Player 4&#10;Player 5&#10;Player 6&#10;Player 7&#10;Player 8&#10;Player 9&#10;Player 10"></textarea>
+            <div class="controls">
+                <span id="counter">0/10</span>
+                <button id="split-btn" class="primary-btn">Split Teams</button>
+            </div>
+            <p id="error-message" class="error hidden">Please enter exactly 10 names.</p>
+        </div>
+
+        <div class="results-section hidden" id="results">
+            <div class="team-card team-blue glass-panel">
+                <h2>Team Blue</h2>
+                <ul id="blue-list"></ul>
+            </div>
+            <div class="team-card team-red glass-panel">
+                <h2>Team Red</h2>
+                <ul id="red-list"></ul>
+            </div>
+        </div>
+        
+        <div class="actions-section hidden" id="actions">
+            <button id="reset-btn" class="secondary-btn">Reset</button>
+            <button id="reshuffle-btn" class="primary-btn">Reshuffle</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
